@@ -1,0 +1,144 @@
+{
+  "src": "deploy/index.html",
+  "url": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/index.html",
+  "outdir": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots",
+  "include": [
+    "lint",
+    "screenshots",
+    "structure"
+  ],
+  "shots": {
+    "desktop": {
+      "revealed": 0,
+      "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
+      "screenshotBytes": 48828,
+      "truncated": false,
+      "structure": {
+        "title": "第十三届大运河庙会 · NFC 碰一碰",
+        "firstH1": "第十三届大运河庙会",
+        "viewport": {
+          "w": 1440,
+          "h": 900
+        },
+        "fullpage": {
+          "w": 1440,
+          "h": 1278
+        },
+        "counts": {
+          "section": 4,
+          "h1": 1,
+          "h2": 0,
+          "img": 0,
+          "canvas": 1,
+          "svg": 13,
+          "links": 0,
+          "buttons": 19
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [
+        {
+          "tag": "aside",
+          "cls": "drawer",
+          "left": 1462,
+          "right": 1892,
+          "width": 430
+        }
+      ],
+      "resourceErrors": [
+        {
+          "url": "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js",
+          "resourceType": "script",
+          "status": null,
+          "reason": "network_error"
+        }
+      ]
+    }
+  },
+  "engine": "playwright",
+  "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
+  "elapsedSec": 4.92,
+  "schemaVersion": 2,
+  "status": "fail",
+  "engineInfo": {
+    "name": "playwright",
+    "degraded": false,
+    "degradedReasons": []
+  },
+  "input": {
+    "original": "deploy/index.html",
+    "resolvedPath": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/index.html",
+    "baseUrl": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/index.html",
+    "protocol": "file",
+    "cwd": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map",
+    "mediaMode": {
+      "reducedMotion": true
+    }
+  },
+  "artifacts": {
+    "screenshots": [
+      {
+        "viewport": "desktop",
+        "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
+        "size": 48828,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      }
+    ]
+  },
+  "summary": {
+    "blocker": 0,
+    "error": 2,
+    "warning": 0,
+    "info": 0
+  },
+  "findings": [
+    {
+      "ruleId": "resourceErrors",
+      "severity": "error",
+      "kind": "network",
+      "viewport": "desktop",
+      "selector": null,
+      "evidence": {
+        "url": "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js",
+        "resourceType": "script",
+        "status": null,
+        "reason": "network_error"
+      },
+      "dedupeKey": "resourceErrors|desktop||0"
+    },
+    {
+      "ruleId": "horizontalOverflow",
+      "severity": "error",
+      "kind": "layout",
+      "viewport": "desktop",
+      "selector": "aside.drawer",
+      "evidence": {
+        "tag": "aside",
+        "cls": "drawer",
+        "left": 1462,
+        "right": 1892,
+        "width": 430
+      },
+      "dedupeKey": "horizontalOverflow|desktop|aside.drawer|0"
+    }
+  ],
+  "prioritizedActions": [
+    {
+      "ruleId": "resourceErrors",
+      "severity": "error",
+      "viewport": "desktop",
+      "selector": null
+    },
+    {
+      "ruleId": "horizontalOverflow",
+      "severity": "error",
+      "viewport": "desktop",
+      "selector": "aside.drawer"
+    }
+  ],
+  "reportPath": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/report.json"
+}

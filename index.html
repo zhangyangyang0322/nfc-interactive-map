@@ -95,6 +95,9 @@ svg .pt.tap .pulse{opacity:1;animation:pop .9s ease-out forwards}
 @keyframes pulse{0%{opacity:.6;r:0}100%{opacity:0;r:34}}
 @keyframes pop{0%{opacity:1}100%{opacity:0}}
 svg .seg{fill:none;stroke:var(--unlit);stroke-opacity:.5;stroke-width:2;stroke-dasharray:3 7;transition:stroke .8s,stroke-opacity .8s}
+svg .seg.ribbon{stroke:#c0392b;stroke-opacity:.30;stroke-width:7;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:none}
+svg .pt .num{fill:#b3542c;font-size:14px;font-weight:700;font-family:"Noto Sans SC","PingFang SC",sans-serif;pointer-events:none;transition:fill .6s}
+svg .pt.lit .num{fill:#7a4a12}
 svg .seg.on{stroke:var(--water-bright);stroke-opacity:.9;stroke-dasharray:0;filter:drop-shadow(0 0 4px rgba(61,148,136,.5))}
 svg .river{fill:none;stroke:var(--water);stroke-opacity:.75;stroke-width:3;filter:drop-shadow(0 0 4px rgba(143,196,186,.5))}
 svg .terrain{fill:rgba(150,115,60,.05)}
@@ -447,42 +450,43 @@ svg .island{fill:rgba(143,196,186,.16)}
  * art: 该点位代表建筑的插画（见下方 ART）
  * ========================================================================= */
 const POINTS = [
-  { id:1, name:"运河天地", x:120, y:520, icon:"tower", art:"tower",
+  /* 数组顺序 = 导览动线顺序：运河天地→桥西→小河公园→小河直街→大兜路→富义仓→运河映巷→运河湾 */
+  { id:1, name:"运河天地", x:160, y:475, icon:"tower", art:"tower",
     lat:30.325112, lng:120.137901,   /* 小河路488号 · 高德POI */
     badge:"弄潮儿",
     story:"老工业厂房蜕变成潮流新地标，运河边的灯火与年轻人的笑闹连成一片。这里是运河重新生长的模样。",
     quiz:{ q:"运河边的旧厂房如今最常见的改造方向是？", options:["文创与商业空间","拆除空地","发电水站"], answer:0 } },
-  { id:2, name:"桥西历史文化街区", x:310, y:470, icon:"anchor", art:"bridge",
+  { id:2, name:"桥西历史文化街区", x:330, y:305, icon:"anchor", art:"bridge",
     lat:30.316781, lng:120.137752,   /* 桥西直街1号 · 高德POI */
     badge:"守桥人",
     story:"黛瓦老屋临水而立，巷口飘着旧时的烟火气。桥西街区紧挨着那座见证运河千年往来的古桥。",
     quiz:{ q:"桥西街区紧邻的运河古石拱桥是？", options:["拱宸桥","钱塘江大桥","断桥"], answer:0 } },
-  { id:3, name:"小河直街", x:455, y:535, icon:"lane", art:"street",
-    lat:30.307308, lng:120.135778,   /* 小河直街历史保护街区 · 高德POI */
-    badge:"街巷客",
-    story:"青石板沿河铺展，木窗棂里透出旧时光。小河直街傍着运河与小河的交汇处，藏着市井最鲜活的呼吸。",
-    quiz:{ q:"临水老街旧时最热闹的场景可能是？", options:["集市与船运","铁路枢纽","皇家园林"], answer:0 } },
-  { id:4, name:"小河公园", x:585, y:445, icon:"park", art:"park",
+  { id:4, name:"小河公园", x:540, y:230, icon:"park", art:"park",
     lat:30.309091, lng:120.136978,   /* 小河路118号 · 高德POI */
     badge:"拾光者",
     story:"老码头与旧仓库被绿意重新唤醒，铁锈红与梧桐影相映成趣。运河边的工业记忆，在这里长成了公园。",
     quiz:{ q:"滨河旧仓储码头转型，最常见的改造方向是？", options:["公园与展馆","停机坪","赛马场"], answer:0 } },
-  { id:5, name:"大兜路历史文化街区", x:415, y:335, icon:"book", art:"pagoda",
+  { id:3, name:"小河直街", x:775, y:270, icon:"lane", art:"street",
+    lat:30.307308, lng:120.135778,   /* 小河直街历史保护街区 · 高德POI */
+    badge:"街巷客",
+    story:"青石板沿河铺展，木窗棂里透出旧时光。小河直街傍着运河与小河的交汇处，藏着市井最鲜活的呼吸。",
+    quiz:{ q:"临水老街旧时最热闹的场景可能是？", options:["集市与船运","铁路枢纽","皇家园林"], answer:0 } },
+  { id:5, name:"大兜路历史文化街区", x:800, y:435, icon:"book", art:"pagoda",
     lat:30.300095, lng:120.144891,   /* 大兜路(香积寺地铁站附近) · 高德POI */
     badge:"访古者",
     story:"旧时的北关贸易之地，塔影映着运河水。大兜路一带的街巷与古寺，把运河的商贸旧梦保存至今。",
     quiz:{ q:"大兜路一带邻近的著名古刹是？", options:["香积寺","灵隐寺","净慈寺"], answer:0 } },
-  { id:6, name:"富义仓", x:560, y:245, icon:"craft", art:"granary",
+  { id:6, name:"富义仓", x:715, y:510, icon:"craft", art:"granary",
     lat:30.3011, lng:120.1458,   /* 霞湾巷8号富义仓遗址 · 邻近坐标，请现场打点校准 */
     badge:"粮仓守望",
     story:"白墙黛瓦的仓储院落，曾是南粮北运的中转枢纽。富义仓与北方的仓廪遥遥相望，被称为运河水路上的粮仓记忆。",
     quiz:{ q:"富义仓在旧时的主要用途是？", options:["漕运粮仓","兵工厂","织造衙门"], answer:0 } },
-  { id:7, name:"运河映巷", x:725, y:305, icon:"museum", art:"lantern",
+  { id:7, name:"运河映巷", x:475, y:525, icon:"museum", art:"lantern",
     lat:30.274081, lng:120.205618,   /* 严家路336号运河映巷影视文化街区 · 高德POI */
     badge:"夜航人",
     story:"华灯初上，运河水把两岸灯火揉成碎金。映在巷壁上的光与影，是这条河最温柔的夜话。",
     quiz:{ q:"夜晚的运河沿岸，最标志性的景观是？", options:["灯火倒映水面","沙漠驼队","雪山冰川"], answer:0 } },
-  { id:8, name:"运河湾", x:890, y:160, icon:"lighthouse", art:"lighthouse",
+  { id:8, name:"运河湾", x:240, y:530, icon:"lighthouse", art:"lighthouse",
     lat:30.333693, lng:120.140809,   /* 运河湾教育文创大厦(石祥路) · 邻近坐标，请现场打点校准 */
     badge:"集灯人",
     story:"最后一盏灯在运河湾亮起，整条航线为你连成星河。恭喜，你点亮了运河的全部灯火。",
@@ -582,33 +586,48 @@ const ART = {
     <rect x="26" y="-16" width="8" height="7" fill="#b9a98b"/>
     <rect x="-15" y="-45" width="30" height="8" rx="2" fill="#d9962e"/>
   </g>`,
-  /* 运河映巷 · 坊门灯笼 */
+  /* 运河映巷 · 蓝色玻璃夜景 */
   lantern:`<g class="art">
-    <ellipse cx="0" cy="2" rx="40" ry="6" fill="#e8e0cd" opacity=".8"/>
-    <rect x="-40" y="-22" width="20" height="26" fill="#eee6d3"/>
-    <rect x="20" y="-22" width="20" height="26" fill="#eee6d3"/>
-    <rect x="-26" y="-40" width="6" height="44" fill="#9a6434"/>
-    <rect x="20" y="-40" width="6" height="44" fill="#9a6434"/>
-    <rect x="-30" y="-46" width="60" height="9" rx="2" fill="#9a6434"/>
-    <path d="M-30 -46 L-34 -38 L-26 -38 Z" fill="#9a6434"/>
-    <path d="M30 -46 L34 -38 L26 -38 Z" fill="#9a6434"/>
-    <line x1="-8" y1="-46" x2="-8" y2="-52" stroke="#5f574a" stroke-width="1.5"/>
-    <ellipse cx="-8" cy="-56" rx="5" ry="6" fill="#c0392b"/>
-    <rect x="-10" y="-62" width="4" height="3" rx="1" fill="#d9962e"/>
-    <line x1="8" y1="-46" x2="8" y2="-52" stroke="#5f574a" stroke-width="1.5"/>
-    <ellipse cx="8" cy="-56" rx="5" ry="6" fill="#c0392b"/>
-    <rect x="6" y="-62" width="4" height="3" rx="1" fill="#d9962e"/>
+    <ellipse cx="0" cy="2" rx="42" ry="6" fill="#e8e0cd" opacity=".8"/>
+    <!-- 金檐 -->
+    <rect x="-46" y="-46" width="92" height="6" rx="3" fill="#d9962e"/>
+    <rect x="-40" y="-41" width="80" height="4" rx="2" fill="#f0bd63"/>
+    <!-- 映巷书法 + 红章 -->
+    <text x="-14" y="-18" text-anchor="middle" font-size="12" font-weight="700" fill="#ffffff" font-family="Noto Serif SC,serif">映巷</text>
+    <rect x="20" y="-25" width="11" height="11" rx="2" fill="#c0392b"/>
+    <!-- 蓝色玻璃立方体主体 -->
+    <rect x="-34" y="-32" width="68" height="34" rx="4" fill="#245a92"/>
+    <rect x="-40" y="-37" width="80" height="5" rx="2" fill="#1e4a77"/>
+    <!-- 玻璃网格窗光带 -->
+    <g fill="#8fc3e8" opacity=".85">
+      <rect x="-29" y="-28" width="13" height="13" rx="2"/><rect x="-12" y="-28" width="13" height="13" rx="2"/><rect x="5" y="-28" width="13" height="13" rx="2"/><rect x="22" y="-28" width="9" height="13" rx="2"/>
+      <rect x="-29" y="-10" width="13" height="9" rx="2"/><rect x="-12" y="-10" width="13" height="9" rx="2"/><rect x="5" y="-10" width="13" height="9" rx="2"/><rect x="22" y="-10" width="9" height="9" rx="2"/>
+    </g>
+    <!-- 一层拱形门廊暖灯 -->
+    <g fill="#3a6f9f">
+      <rect x="-29" y="2" width="13" height="7" rx="3.5"/><rect x="-12" y="2" width="13" height="7" rx="3.5"/><rect x="5" y="2" width="13" height="7" rx="3.5"/><rect x="22" y="2" width="9" height="7" rx="3.5"/>
+    </g>
+    <rect x="-34" y="9" width="68" height="3" rx="1.5" fill="#1e4a77"/>
+    <line x1="-20" y1="9" x2="-20" y2="15" stroke="#ffcf6e" stroke-width="1.6"/>
+    <line x1="0" y1="9" x2="0" y2="15" stroke="#ffcf6e" stroke-width="1.6"/>
+    <line x1="20" y1="9" x2="20" y2="15" stroke="#ffcf6e" stroke-width="1.6"/>
   </g>`,
-  /* 运河湾 · 灯塔 */
+  /* 运河湾 · 流线曲面玻璃 */
   lighthouse:`<g class="art">
-    <ellipse cx="0" cy="2" rx="30" ry="6" fill="#e8e0cd" opacity=".8"/>
-    <path d="M-30 2 Q-14 -7 0 2 Q14 -5 30 2 L26 6 L-26 6 Z" fill="#b7ad99"/>
-    <path d="M-9 2 L-6 -32 L6 -32 L9 2 Z" fill="#f3ecdd"/>
-    <path d="M-8 -10 L8 -10 L8.4 -20 L-8.4 -20 Z" fill="#c0392b"/>
-    <path d="M-7.3 -26 L7.3 -26 L6.6 -32 L-6.6 -32 Z" fill="#c0392b"/>
-    <rect x="-6" y="-36" width="12" height="5" fill="#5f574a"/>
-    <circle cx="0" cy="-39" r="3.4" fill="#ffcf6e"/>
-    <path d="M-4 -36 L0 -44 L4 -36 Z" fill="#5f574a"/>
+    <ellipse cx="0" cy="2" rx="34" ry="6" fill="#e8e0cd" opacity=".8"/>
+    <!-- 流线曲面木格栅屋顶 -->
+    <path d="M-34 -16 Q0 -40 34 -16 Q34 -10 0 -20 Q-34 -22 -34 -16 Z" fill="#9a7a5a"/>
+    <!-- 玻璃幕墙两层 -->
+    <rect x="-30" y="-16" width="60" height="16" rx="3" fill="#7fb6ad"/>
+    <rect x="-34" y="-18" width="68" height="4" rx="2" fill="#5f8f8a"/>
+    <g fill="#eef7f5" opacity=".95">
+      <rect x="-25" y="-13" width="11" height="9" rx="1"/><rect x="-10" y="-13" width="11" height="9" rx="1"/><rect x="5" y="-13" width="11" height="9" rx="1"/><rect x="20" y="-13" width="7" height="9" rx="1"/>
+    </g>
+    <rect x="-30" y="0" width="60" height="15" rx="3" fill="#8fb5af"/>
+    <g fill="#eef7f5" opacity=".95">
+      <rect x="-24" y="3" width="10" height="8" rx="1"/><rect x="-9" y="3" width="10" height="8" rx="1"/><rect x="6" y="3" width="10" height="8" rx="1"/><rect x="20" y="3" width="7" height="8" rx="1"/>
+    </g>
+    <rect x="-30" y="15" width="60" height="3" rx="1.5" fill="#5f8f8a"/>
   </g>`
 };
 
@@ -721,18 +740,20 @@ async function tryUnlock(id, source){
 /* ===== 渲染地图点位 ===== */
 function buildMap(){
   const layer = $("#pointsLayer");
-  // 连接线（按点位顺序）
+  // 连接线（按动线顺序成闭环大红飘带）
   const segLayer = document.createElementNS(SVGNS,"g");
-  for(let i=0;i<POINTS.length-1;i++){
+  for(let i=0;i<POINTS.length;i++){
+    const a = POINTS[i], b = POINTS[(i+1)%POINTS.length];
     const seg = document.createElementNS(SVGNS,"path");
-    seg.setAttribute("class","seg");
+    seg.setAttribute("class","seg ribbon");
     seg.id = "seg-"+i;
-    seg.setAttribute("d", `M${POINTS[i].x} ${POINTS[i].y} Q${(POINTS[i].x+POINTS[i+1].x)/2} ${(POINTS[i].y+POINTS[i+1].y)/2-26} ${POINTS[i+1].x} ${POINTS[i+1].y}`);
+    const mx=(a.x+b.x)/2, my=(a.y+b.y)/2-30;
+    seg.setAttribute("d", `M${a.x} ${a.y} Q${mx} ${my} ${b.x} ${b.y}`);
     segLayer.appendChild(seg);
   }
   layer.parentNode.insertBefore(segLayer, layer);
 
-  POINTS.forEach(p=>{
+  POINTS.forEach((p,pi)=>{
     const g = document.createElementNS(SVGNS,"g");
     g.setAttribute("class","pt");
     g.id = "pt-"+p.id;
@@ -770,7 +791,12 @@ function buildMap(){
     const core = document.createElementNS(SVGNS,"circle");
     core.setAttribute("class","core"); core.setAttribute("id","core-"+p.id);
     core.setAttribute("cx",mx); core.setAttribute("cy",my); core.setAttribute("r",8);
-    g.appendChild(halo); g.appendChild(pulse); g.appendChild(ring); g.appendChild(core);
+    // 精确圆形编号 1-8
+    const num = document.createElementNS(SVGNS,"text");
+    num.setAttribute("class","num"); num.setAttribute("id","num-"+p.id);
+    num.setAttribute("x",mx); num.setAttribute("y",my+0.9); num.setAttribute("text-anchor","middle");
+    num.textContent = String(pi+1);   // 动线顺序编号 1-8（NFC 内部仍用 p.id 匹配）
+    g.appendChild(halo); g.appendChild(pulse); g.appendChild(ring); g.appendChild(core); g.appendChild(num);
     // 交互
     g.addEventListener("click", e=>{ e.stopPropagation(); if(mode==="sim" && !calMode) unlockPoint(p.id,"sim"); else if(calMode) toast("校准模式：拖动灯到对应位置即可"); else toast(mode==="scan" ? "请扫「"+p.name+"」的点位二维码点亮（只点亮这一个点位）" : "请在该点位碰卡/扫码点亮，页面内点击不生效"); });
     g.addEventListener("keydown", e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); if(mode==="sim") unlockPoint(p.id,"sim"); } });
