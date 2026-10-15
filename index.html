@@ -437,7 +437,7 @@ svg .island{fill:rgba(143,196,186,.16)}
     <div class="d-status" id="geoStatus"><span class="st-dot"></span><span id="geoStatusText">—</span></div>
     <div style="display:flex;align-items:center;gap:10px;margin-top:12px">
       <span style="font-size:12.5px;color:var(--paper-dim);flex:none">允许半径(米)</span>
-      <input class="d-input" id="geoRadius" type="number" value="250" min="30" max="3000" style="margin-top:0">
+      <input class="d-input" id="geoRadius" type="number" value="500" min="30" max="3000" style="margin-top:0">
     </div>
     <button class="reset-btn" id="geoRadiusBtn" style="margin-top:12px;background:var(--gold-soft);border-color:rgba(217,150,46,.4);color:var(--gold-bright)">保存半径</button>
     <div class="d-note" style="margin-top:14px"><b>现场打点校准</b>：管理员站到点位实地，选中该点位后点下方按钮，即用当前 GPS 精确设为该点（避免地图坐标偏移）。</div>
@@ -2978,7 +2978,7 @@ let reportUrl = localStorage.getItem("nfcMapReportUrl") || "";
 
 // 打卡定位校验：现场(NFC/扫码)需在点位附近才点亮，防远程打卡/作弊
 let geoRequired = localStorage.getItem("nfcMapGeoReq") !== "0";      // 默认开启
-let geoRadius = Number(localStorage.getItem("nfcMapRadius") || 250); // 允许半径(米)
+let geoRadius = Number(localStorage.getItem("nfcMapRadius") || 500); // 允许半径(米)
 
 // 自定义地图：若之前保存过校准坐标，覆盖 POINTS 的 x/y
 try {
@@ -3578,7 +3578,7 @@ function setupGeo(){
   paintStatus();
   req.addEventListener("change", ()=>{ geoRequired=req.checked; localStorage.setItem("nfcMapGeoReq", geoRequired?"1":"0"); paintStatus(); toast(geoRequired?"已开启定位校验":"已关闭定位校验"); });
   document.getElementById("geoRadiusBtn").addEventListener("click", ()=>{
-    const v=Math.min(3000, Math.max(30, Number(document.getElementById("geoRadius").value)||250));
+    const v=Math.min(3000, Math.max(30, Number(document.getElementById("geoRadius").value)||500));
     geoRadius=v; localStorage.setItem("nfcMapRadius", String(v)); document.getElementById("geoRadius").value=v; paintStatus(); toast("允许半径设为 "+v+" 米");
   });
   const sel=document.getElementById("geoPick");
