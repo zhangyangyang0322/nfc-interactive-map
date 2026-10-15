@@ -104,6 +104,7 @@ svg .terrain{fill:rgba(150,115,60,.05)}
 svg .island{fill:rgba(143,196,186,.16)}
 /* 自定义地图时隐藏内置插画/河流 */
 .has-map .terrain,.has-map .island,.has-map #riverPath,.has-map .deco,.has-map .pt .art{display:none}
+.has-map .bg-rect{display:none}
 .has-map .pt .num,.has-map .pt .num-bg,.has-map .pt .label,.has-map .pt .label-bg,.has-map .pt .halo,.has-map .pt .pulse{display:none}
 .has-map .pt:not(.lit) .ring,.has-map .pt:not(.lit) .core{display:none}
 
@@ -287,7 +288,7 @@ svg .pt .num-bg{fill:#fffdf6;stroke:var(--gold);stroke-width:2}
         </radialGradient>
       </defs>
       <!-- 底色 -->
-      <rect width="1000" height="600" fill="#fdfaf0"/>
+      <rect class="bg-rect" width="1000" height="1000" fill="#fdfaf0"/>
       <!-- 陆地 -->
       <path class="terrain" d="M-20 520 Q120 480 220 545 T520 565 T800 545 T1040 530 V620 H-20Z" fill="url(#landShade)"/>
       <path class="terrain" d="M-20 70 Q140 30 300 90 T560 50 T820 100 T1040 70 V0 H-20Z" fill="url(#landShade)"/>
