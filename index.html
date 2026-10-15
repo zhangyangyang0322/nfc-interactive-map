@@ -70,7 +70,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
   radial-gradient(900px 420px at 50% -5%, #fffdf5 0%, rgba(255,253,245,0) 60%),
   linear-gradient(180deg,#fffdf6,#fbf4e6);
   border:1px solid var(--line);box-shadow:var(--shadow)}
-.stage canvas.svg-map{display:block;width:100%;height:auto}
+.stage svg.svg-map{display:block;width:100%;height:auto}
 .legend{position:absolute;left:14px;bottom:14px;display:flex;gap:16px;font-size:11.5px;color:var(--paper-dim);background:rgba(255,255,255,.9);backdrop-filter:blur(6px);padding:8px 14px;border-radius:999px;border:1px solid var(--line);box-shadow:0 6px 16px rgba(150,115,60,.1)}
 .legend i{display:inline-block;width:9px;height:9px;border-radius:50%;margin-right:6px;vertical-align:-1px}
 .legend .li{display:flex;align-items:center}
@@ -236,6 +236,10 @@ svg .island{fill:rgba(143,196,186,.16)}
 .qr-modal .d-close{width:34px;height:34px;border-radius:10px;background:rgba(255,255,255,.1);border:none;display:grid;place-items:center;cursor:pointer;color:var(--ink)}
 .qr-note{color:var(--paper-dim);font-size:12px;line-height:1.6;margin:6px 0 10px}
 .qr-link{word-break:break-all;font-size:11px;color:var(--paper-dim);text-align:center;padding:6px 8px;background:rgba(0,0,0,.04);border-radius:8px;margin-top:2px}
+.brand-title{font-size:clamp(21px,3.2vw,32px);letter-spacing:2px;font-weight:800;background:linear-gradient(120deg,#8a4b12 0%,#c78a2e 45%,#8a4b12 100%);-webkit-background-clip:text;background-clip:text;color:transparent}
+.stage-tag{position:absolute;top:14px;left:50%;transform:translateX(-50%);z-index:10;display:flex;align-items:center;gap:10px;background:rgba(255,253,246,.92);border:1px solid var(--line);box-shadow:0 4px 14px rgba(150,115,60,.12);color:var(--paper);font-size:12.5px;font-weight:600;letter-spacing:2px;padding:7px 16px;border-radius:999px;backdrop-filter:blur(4px)}
+.st-mark{width:8px;height:8px;border-radius:50%;background:var(--gold);box-shadow:0 0 6px rgba(217,150,46,.6)}
+.progress-pill .num{color:var(--gold-bright);font-weight:800}
 </style>
 </head>
 <body>
@@ -248,7 +252,7 @@ svg .island{fill:rgba(143,196,186,.16)}
         <svg viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="16" rx="6" ry="7" fill="#c0392b"/><rect x="9" y="6" width="6" height="4" rx="2" fill="#d9962e"/><circle cx="12" cy="7" r="3.4" fill="#c0392b"/></svg>
       </div>
       <div>
-        <h1>第十三届大运河庙会</h1>
+        <h1 class="brand-title">第十三届大运河庙会</h1>
         <div class="sub">NFC 碰一碰 · 点亮运河庙会</div>
       </div>
     </div>
@@ -266,6 +270,7 @@ svg .island{fill:rgba(143,196,186,.16)}
 
   <!-- ===== 地图 ===== -->
   <section class="stage">
+    <div class="stage-tag"><span class="st-mark"></span>第十三届大运河庙会 · 打卡导览图<span class="st-mark"></span></div>
     <svg class="svg-map" id="mapSvg" viewBox="0 0 1000 1000" role="img" aria-label="第十三届大运河庙会地图">
       <defs>
         <radialGradient id="haloG" cx="50%" cy="50%" r="50%">
