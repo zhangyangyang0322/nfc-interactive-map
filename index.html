@@ -353,6 +353,7 @@ svg .island{fill:rgba(143,196,186,.16)}
     <div style="display:flex;justify-content:center;padding:14px 0"><canvas id="qrCanvas" width="180" height="180"></canvas></div>
     <div class="qr-link" id="qrLink">—</div>
     <button class="reset-btn" id="qrCopy" style="margin-top:10px;width:100%;background:var(--gold-soft);border-color:rgba(217,150,46,.4);color:var(--gold-bright)">复制该点位打卡链接</button>
+    <button class="reset-btn" id="qrDone" style="margin-top:8px;width:100%;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.22);color:var(--ink)">完成 · 返回地图</button>
   </div>
 </div>
 
@@ -3564,6 +3565,7 @@ function setupQrQuick(){
       else window.prompt("复制链接", url);
     }else toast("请先部署到 http(s) 地址后复制");
   });
+  document.getElementById("qrDone").addEventListener("click", close);
 }
 
 /* ===== 打卡定位校验设置（开关 / 半径 / 现场打点校准） ===== */
