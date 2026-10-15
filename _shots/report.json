@@ -15,7 +15,7 @@
         "result": null
       },
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-      "screenshotBytes": 83216,
+      "screenshotBytes": 89882,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -50,19 +50,12 @@
           "width": 430
         }
       ],
-      "resourceErrors": [
-        {
-          "url": "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js",
-          "resourceType": "script",
-          "status": null,
-          "reason": "network_error"
-        }
-      ]
+      "resourceErrors": []
     }
   },
   "engine": "playwright",
   "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
-  "elapsedSec": 6.32,
+  "elapsedSec": 3.96,
   "schemaVersion": 2,
   "status": "fail",
   "engineInfo": {
@@ -85,7 +78,7 @@
       {
         "viewport": "desktop",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-        "size": 83216,
+        "size": 89882,
         "visualCoverage": {
           "complete": true,
           "reason": null
@@ -95,25 +88,11 @@
   },
   "summary": {
     "blocker": 0,
-    "error": 2,
+    "error": 1,
     "warning": 0,
     "info": 0
   },
   "findings": [
-    {
-      "ruleId": "resourceErrors",
-      "severity": "error",
-      "kind": "network",
-      "viewport": "desktop",
-      "selector": null,
-      "evidence": {
-        "url": "https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js",
-        "resourceType": "script",
-        "status": null,
-        "reason": "network_error"
-      },
-      "dedupeKey": "resourceErrors|desktop||0"
-    },
     {
       "ruleId": "horizontalOverflow",
       "severity": "error",
@@ -131,12 +110,6 @@
     }
   ],
   "prioritizedActions": [
-    {
-      "ruleId": "resourceErrors",
-      "severity": "error",
-      "viewport": "desktop",
-      "selector": null
-    },
     {
       "ruleId": "horizontalOverflow",
       "severity": "error",
