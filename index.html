@@ -1239,6 +1239,7 @@ function setupQrQuick(){
     const usable = url.indexOf("http")===0;
     if(window.QRCode) QRCode.toCanvas(cv, usable ? url : "https://example.com/?tap="+id, { width:180, margin:1 }).catch(()=>{});
     if(!usable) linkEl.textContent = "请先部署到 http(s) 地址后此处自动生成链接";
+    else toast("已生成「"+ (pick.options[pick.selectedIndex]||{}).text +"」二维码：点下方「复制链接」→ 到草料/微信生成二维码 → 打印贴到该点位即可");
   };
   const close=()=>{ modal.hidden = true; };
   pick.addEventListener("change", draw);
