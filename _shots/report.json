@@ -15,7 +15,7 @@
         "result": null
       },
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-      "screenshotBytes": 89882,
+      "screenshotBytes": 90981,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -55,7 +55,7 @@
   },
   "engine": "playwright",
   "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
-  "elapsedSec": 3.96,
+  "elapsedSec": 6.01,
   "schemaVersion": 2,
   "status": "fail",
   "engineInfo": {
@@ -78,7 +78,7 @@
       {
         "viewport": "desktop",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-        "size": 89882,
+        "size": 90981,
         "visualCoverage": {
           "complete": true,
           "reason": null
