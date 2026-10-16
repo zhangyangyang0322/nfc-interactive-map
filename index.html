@@ -64,6 +64,7 @@ button{font-family:inherit;cursor:pointer;border:none;background:none;color:inhe
 .mode-btn:hover{border-color:var(--gold);color:var(--paper)}
 .mode-btn .tag{color:var(--gold-bright);font-weight:500}
 .mode-btn svg{width:15px;height:15px}
+#modeBtn{display:none}
 
 /* ===== 地图舞台 ===== */
 .stage{position:relative;border-radius:var(--radius);overflow:hidden;background:
@@ -333,7 +334,7 @@ svg .pt .num-bg{fill:#fffdf6;stroke:var(--gold);stroke-width:2}
     <div class="p-empty" id="emptyState">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M12 3l7 4v5c0 4.5-3 7.6-7 9-4-1.4-7-4.5-7-9V7l7-4z"/><path d="M8.5 11.5l2.4 2.4 4.6-4.8"/></svg>
       <div class="t1">还没有点亮任何点位</div>
-      <div class="t2" id="emptyHint">在地图上<span class="kbd">点击点位</span>模拟碰一碰，或前往右上角设置切换为「NFC 真机」「网络接收」模式，用手机 NFC 贴纸 / ESP32 读卡触发点亮。</div>
+      <div class="t2" id="emptyHint">在点位处，用手机<b>碰一碰 NFC 贴纸</b>（安卓），或<b>扫点位二维码</b>，即可点亮对应庙会点位。</div>
       <div class="t3">已点亮进度会自动保存在本机浏览器</div>
     </div>
     <div id="cardArea"></div>
@@ -3471,7 +3472,7 @@ async function startNfc(){
     await nfcReader.scan();
     $("#nfcStatus").classList.add("connected");
     $("#nfcStatusText").textContent = "已就绪，请将贴纸贴近手机";
-    toast("NFC 监听已启动");
+    toast("已就绪，将手机贴近贴纸即可点亮");
     nfcReader.onreading = ({message, serialNumber})=>{
       let code = serialNumber;
       for(const rec of message.records){
@@ -3654,12 +3655,20 @@ function init(){
   setupGeo();
   $("#nfcBtn").addEventListener("click", startNfc);
   // 默认提示文案随模式
-  $("#emptyHint").innerHTML = "在地图上<span class=\"kbd\">点击点位</span>模拟碰一碰，或前往右上角设置切换为「NFC 真机」「扫码打卡」「网络接收」模式。";
+  $("#emptyHint").innerHTML = "在点位处，用手机<b>碰一碰 NFC 贴纸</b>（安卓），或<b>扫点位二维码</b>，即可点亮对应庙会点位。";
   // 扫码直达：URL 带 ?tap=点位ID 时尝试点亮该点位（现场需通过定位校验）
   try{
     const tapId = Number(new URLSearchParams(location.search).get("tap"));
     if(POINTS.some(p=>p.id===tapId)) tryUnlock(tapId, "scan");
   }catch(e){}
+  // 游客视图：默认隐藏技术设置入口；部署/调试用 ?admin=1 显示
+  const isAdmin = new URLSearchParams(location.search).get("admin")==="1" || localStorage.getItem("nfcMapAdmin")==="1";
+  if(!isAdmin){ $("#modeBtn").style.display="none"; }
+  // 游客碰一碰：支持 Web NFC 的设备，首次点击页面即启动 NFC 监听，贴近贴纸即可点亮
+  if("NDEFReader" in window){
+    const once=()=>{ document.removeEventListener("click",once); if(!nfcReader) startNfc(); };
+    document.addEventListener("click",once);
+  }
 }
 init();
 </script>
