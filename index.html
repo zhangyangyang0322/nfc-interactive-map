@@ -420,7 +420,7 @@ svg .pt .num-bg{fill:#fffdf6;stroke:var(--gold);stroke-width:2}
   <div class="d-sec" id="netSec" hidden>
     <h4>服务器连接</h4>
     <div class="d-note">ESP32 读到 NFC 后向 Node 服务器上报，服务器通过 WebSocket 推送到本页面。</div>
-    <input class="d-input" id="wsUrl" placeholder="ws://192.168.1.100:3000" value="ws://localhost:3000" spellcheck="false">
+    <input class="d-input" id="wsUrl" placeholder="wss://dayunhemiaohui.me" value="wss://dayunhemiaohui.me" spellcheck="false">
     <button class="reset-btn" id="wsBtn" style="margin-top:12px;background:var(--gold-soft);border-color:rgba(217,150,46,.4);color:var(--gold-bright)">连接</button>
     <div class="d-status" id="wsStatus"><span class="st-dot"></span><span id="wsStatusText">未连接</span></div>
   </div>
@@ -459,7 +459,7 @@ svg .pt .num-bg{fill:#fffdf6;stroke:var(--gold);stroke-width:2}
   <div class="d-sec">
     <h4>打卡数据上报</h4>
     <div class="d-note">开启后，本机每次点亮（模拟/真机 NFC）都会带<b>你的唯一ID</b>上报到后台，用于统计<b>碰完总人数</b>（同一人重复碰只计一次）。本机 ID：<code id="myUid">—</code></div>
-    <input class="d-input" id="reportUrl" placeholder="http://192.168.1.100:3000" value="" spellcheck="false">
+    <input class="d-input" id="reportUrl" placeholder="https://dayunhemiaohui.me" value="https://dayunhemiaohui.me" spellcheck="false">
     <button class="reset-btn" id="reportBtn" style="margin-top:12px;background:var(--gold-soft);border-color:rgba(217,150,46,.4);color:var(--gold-bright)">保存上报地址</button>
     <div class="d-status" id="reportStatus"><span class="st-dot"></span><span id="reportStatusText">未设置</span></div>
   </div>
@@ -2983,7 +2983,7 @@ const saved = JSON.parse(localStorage.getItem("nfcMapUnlock") || "[]");
 const unlocked = new Set(saved.filter(n=>POINTS.some(p=>p.id===Number(n))));
 let mode = localStorage.getItem("nfcMapMode") || "sim";
 let ws = null, nfcReader = null;
-let reportUrl = localStorage.getItem("nfcMapReportUrl") || "";
+let reportUrl = localStorage.getItem("nfcMapReportUrl") || "https://dayunhemiaohui.me";
 
 // 打卡定位校验：现场(NFC/扫码)需在点位附近才点亮，防远程打卡/作弊
 let geoRequired = localStorage.getItem("nfcMapGeoReq") !== "0";      // 默认开启
@@ -3511,7 +3511,7 @@ function refreshStats(){
   fetch(base+"/api/stats").then(r=>r.json()).then(renderStats).catch(()=>{});
 }
 function connectWs(){
-  const url = $("#wsUrl").value.trim() || "ws://localhost:3000";
+  const url = $("#wsUrl").value.trim() || "wss://dayunhemiaohui.me";
   try{ ws = new WebSocket(url); }catch(e){ $("#wsStatusText").textContent="地址无效"; return; }
   $("#wsStatus").classList.remove("connected");
   $("#wsStatusText").textContent = "连接中…";
