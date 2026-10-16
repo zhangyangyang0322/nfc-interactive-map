@@ -11,7 +11,7 @@
     "desktop": {
       "revealed": 0,
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-      "screenshotBytes": 72746,
+      "screenshotBytes": 74818,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -46,12 +46,20 @@
           "width": 430
         }
       ],
-      "resourceErrors": []
+      "resourceErrors": [],
+      "localImageWarnings": [
+        {
+          "tag": "svg-image",
+          "attr": "href",
+          "url": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/map.jpg"
+        }
+      ],
+      "localImageHint": "含义：页面里存在 file:// 本地图片引用。云电脑交付的 HTML 不能包含文件系统引用。 | 修法：对每张图跑 `lark-cli drive +html-image-upload --file <图片路径>`，把返回里 data.url 的链接换进 <img src>；图片文件本身保留在 assets/ 里不要删。 | 豁免：本地电脑（Computer OS 为 Windows / Mac）不报此项——那里用 assets/ 相对路径引用是规定做法。本规则只匹配 file://，http(s)/data URI 都不会报。"
     },
     "mobile": {
       "revealed": 0,
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_mobile.jpg",
-      "screenshotBytes": 42325,
+      "screenshotBytes": 42747,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -86,12 +94,30 @@
           "width": 359
         }
       ],
-      "resourceErrors": []
+      "resourceErrors": [],
+      "localImageWarnings": [
+        {
+          "tag": "svg-image",
+          "attr": "href",
+          "url": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/map.jpg"
+        }
+      ],
+      "localImageHint": "含义：页面里存在 file:// 本地图片引用。云电脑交付的 HTML 不能包含文件系统引用。 | 修法：对每张图跑 `lark-cli drive +html-image-upload --file <图片路径>`，把返回里 data.url 的链接换进 <img src>；图片文件本身保留在 assets/ 里不要删。 | 豁免：本地电脑（Computer OS 为 Windows / Mac）不报此项——那里用 assets/ 相对路径引用是规定做法。本规则只匹配 file://，http(s)/data URI 都不会报。"
     }
   },
   "engine": "playwright",
   "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
-  "elapsedSec": 5.99,
+  "publishBrokenAssets": [
+    {
+      "file": "map.jpg",
+      "reason": "js-literal",
+      "severity": "error",
+      "loadedAtRuntime": true,
+      "onDisk": true
+    }
+  ],
+  "publishBrokenAssetsHint": "含义：发布链路靠静态扫描 HTML 源码决定上传哪些图片文件，**只认 `src` 属性和 CSS `url()` 两个位置**（线上实测）。写在别处的路径不会被上传，发布后 404 裂图。本地打开和自检截图都看不出来——文件真实存在，浏览器照样加载。 | severity=error 的逐条改，改法都是同一个：把路径挪到 `<img src=\"assets/x.png\">` 或 CSS `url('assets/x.png')`。reason=js-literal 路径写在 JS 字符串里（`const g=['assets/x.png']` 这种常量数组也算，照样裂）；reason=js-concat 路径由 JS 拼接（`'assets/img'+i+'.png'`）；reason=non-src-attr 路径写在 `data-src`、`srcset`、`poster` 等非 `src` 属性上——**这类即便静态写在 HTML 属性里也会裂**，懒加载写法要在 `src` 上放真实路径。 | severity=warning（reason=unreferenced-file）是提醒不是错误：`assets/` 里有这个文件，但源码和运行时都没引用到它。可能是没用上的多余素材（删掉即可），也可能是路径拼接且当前视口没渲染到的图（那就是会裂的，按 error 处理）。**这一条只在本地电脑（macOS / Windows）检测**——云电脑图片走 `lark-cli drive +html-image-upload`，HTML 引用外链、`assets/` 里的原图本就该保留且不被引用，在那儿报是纯误报，所以直接不报；**别因为这条去删云电脑上的原图**。自行判断，别的规则不受它影响。",
+  "elapsedSec": 7.64,
   "schemaVersion": 2,
   "status": "fail",
   "engineInfo": {
@@ -114,7 +140,7 @@
       {
         "viewport": "desktop",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-        "size": 72746,
+        "size": 74818,
         "visualCoverage": {
           "complete": true,
           "reason": null
@@ -123,7 +149,7 @@
       {
         "viewport": "mobile",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_mobile.jpg",
-        "size": 42325,
+        "size": 42747,
         "visualCoverage": {
           "complete": true,
           "reason": null
@@ -133,8 +159,8 @@
   },
   "summary": {
     "blocker": 0,
-    "error": 2,
-    "warning": 0,
+    "error": 3,
+    "warning": 2,
     "info": 0
   },
   "findings": [
@@ -154,6 +180,19 @@
       "dedupeKey": "horizontalOverflow|desktop|aside.drawer|0"
     },
     {
+      "ruleId": "localImageWarnings",
+      "severity": "warning",
+      "kind": "publish",
+      "viewport": "desktop",
+      "selector": "svg-image",
+      "evidence": {
+        "tag": "svg-image",
+        "attr": "href",
+        "url": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/map.jpg"
+      },
+      "dedupeKey": "localImageWarnings|desktop|svg-image|0"
+    },
+    {
       "ruleId": "horizontalOverflow",
       "severity": "error",
       "kind": "layout",
@@ -167,6 +206,34 @@
         "width": 359
       },
       "dedupeKey": "horizontalOverflow|mobile|aside.drawer|0"
+    },
+    {
+      "ruleId": "localImageWarnings",
+      "severity": "warning",
+      "kind": "publish",
+      "viewport": "mobile",
+      "selector": "svg-image",
+      "evidence": {
+        "tag": "svg-image",
+        "attr": "href",
+        "url": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/map.jpg"
+      },
+      "dedupeKey": "localImageWarnings|mobile|svg-image|0"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "kind": "publish",
+      "viewport": null,
+      "selector": null,
+      "evidence": {
+        "file": "map.jpg",
+        "reason": "js-literal",
+        "severity": "error",
+        "loadedAtRuntime": true,
+        "onDisk": true
+      },
+      "dedupeKey": "publishBrokenAssets|top||0"
     }
   ],
   "prioritizedActions": [
@@ -175,6 +242,18 @@
       "severity": "error",
       "viewport": "desktop",
       "selector": "aside.drawer"
+    },
+    {
+      "ruleId": "publishBrokenAssets",
+      "severity": "error",
+      "viewport": null,
+      "selector": null
+    },
+    {
+      "ruleId": "localImageWarnings",
+      "severity": "warning",
+      "viewport": "desktop",
+      "selector": "svg-image"
     }
   ],
   "reportPath": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/report.json"
