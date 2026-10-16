@@ -11,7 +11,7 @@
     "desktop": {
       "revealed": 0,
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-      "screenshotBytes": 90836,
+      "screenshotBytes": 72746,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -22,7 +22,7 @@
         },
         "fullpage": {
           "w": 1440,
-          "h": 1418
+          "h": 900
         },
         "counts": {
           "section": 4,
@@ -51,7 +51,7 @@
     "mobile": {
       "revealed": 0,
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_mobile.jpg",
-      "screenshotBytes": 67553,
+      "screenshotBytes": 42325,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -62,7 +62,7 @@
         },
         "fullpage": {
           "w": 390,
-          "h": 1643
+          "h": 844
         },
         "counts": {
           "section": 4,
@@ -91,7 +91,7 @@
   },
   "engine": "playwright",
   "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
-  "elapsedSec": 7.82,
+  "elapsedSec": 5.99,
   "schemaVersion": 2,
   "status": "fail",
   "engineInfo": {
@@ -114,7 +114,7 @@
       {
         "viewport": "desktop",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-        "size": 90836,
+        "size": 72746,
         "visualCoverage": {
           "complete": true,
           "reason": null
@@ -123,7 +123,7 @@
       {
         "viewport": "mobile",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_mobile.jpg",
-        "size": 67553,
+        "size": 42325,
         "visualCoverage": {
           "complete": true,
           "reason": null
