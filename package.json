@@ -1,0 +1,8 @@
+{
+  "name": "nfc-map-server",
+  "version": "1.0.0",
+  "description": "NFC 碰一碰 打卡数据后台",
+  "main": "server.js",
+  "scripts": { "start": "node server.js" },
+  "dependencies": { "ws": "^8.18.0" }
+}
