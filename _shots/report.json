@@ -1,5 +1,5 @@
 {
-  "src": "deploy/index.html",
+  "src": "index.html",
   "url": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/index.html",
   "outdir": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots",
   "include": [
@@ -11,7 +11,7 @@
     "desktop": {
       "revealed": 0,
       "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-      "screenshotBytes": 92545,
+      "screenshotBytes": 90836,
       "truncated": false,
       "structure": {
         "title": "第十三届大运河庙会 · NFC 碰一碰",
@@ -22,7 +22,7 @@
         },
         "fullpage": {
           "w": 1440,
-          "h": 1420
+          "h": 1418
         },
         "counts": {
           "section": 4,
@@ -47,11 +47,51 @@
         }
       ],
       "resourceErrors": []
+    },
+    "mobile": {
+      "revealed": 0,
+      "screenshot": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_mobile.jpg",
+      "screenshotBytes": 67553,
+      "truncated": false,
+      "structure": {
+        "title": "第十三届大运河庙会 · NFC 碰一碰",
+        "firstH1": "第十三届大运河庙会",
+        "viewport": {
+          "w": 390,
+          "h": 844
+        },
+        "fullpage": {
+          "w": 390,
+          "h": 1643
+        },
+        "counts": {
+          "section": 4,
+          "h1": 1,
+          "h2": 0,
+          "img": 0,
+          "canvas": 2,
+          "svg": 14,
+          "links": 0,
+          "buttons": 23
+        }
+      },
+      "consoleErrors": [],
+      "consoleWarnings": [],
+      "horizontalOverflow": [
+        {
+          "tag": "aside",
+          "cls": "drawer",
+          "left": 408,
+          "right": 767,
+          "width": 359
+        }
+      ],
+      "resourceErrors": []
     }
   },
   "engine": "playwright",
   "chromiumExec": "/opt/vm/preinstall/ms-playwright/chromium-1169/chrome-linux/chrome",
-  "elapsedSec": 5.8,
+  "elapsedSec": 7.82,
   "schemaVersion": 2,
   "status": "fail",
   "engineInfo": {
@@ -60,11 +100,11 @@
     "degradedReasons": []
   },
   "input": {
-    "original": "deploy/index.html",
+    "original": "index.html",
     "resolvedPath": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/index.html",
     "baseUrl": "file:///home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/index.html",
     "protocol": "file",
-    "cwd": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map",
+    "cwd": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy",
     "mediaMode": {
       "reducedMotion": true
     }
@@ -74,7 +114,16 @@
       {
         "viewport": "desktop",
         "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_desktop.jpg",
-        "size": 92545,
+        "size": 90836,
+        "visualCoverage": {
+          "complete": true,
+          "reason": null
+        }
+      },
+      {
+        "viewport": "mobile",
+        "path": "/home/user/Doubao/chats/38446741520694530/nfc-interactive-map/deploy/_shots/index_mobile.jpg",
+        "size": 67553,
         "visualCoverage": {
           "complete": true,
           "reason": null
@@ -84,7 +133,7 @@
   },
   "summary": {
     "blocker": 0,
-    "error": 1,
+    "error": 2,
     "warning": 0,
     "info": 0
   },
@@ -103,6 +152,21 @@
         "width": 430
       },
       "dedupeKey": "horizontalOverflow|desktop|aside.drawer|0"
+    },
+    {
+      "ruleId": "horizontalOverflow",
+      "severity": "error",
+      "kind": "layout",
+      "viewport": "mobile",
+      "selector": "aside.drawer",
+      "evidence": {
+        "tag": "aside",
+        "cls": "drawer",
+        "left": 408,
+        "right": 767,
+        "width": 359
+      },
+      "dedupeKey": "horizontalOverflow|mobile|aside.drawer|0"
     }
   ],
   "prioritizedActions": [
