@@ -17,8 +17,8 @@ fi
 echo "=== 3/6 下载并部署 server.js ==="
 mkdir -p /opt/nfc-map
 cd /opt/nfc-map
-curl -fsSL -o server.js https://raw.githubusercontent.com/zhangyangyang0322/nfc-interactive-map/main/deploy/server.js
-curl -fsSL -o package.json https://raw.githubusercontent.com/zhangyangyang0322/nfc-interactive-map/main/deploy/package.json
+curl -fsSL -o server.js https://raw.githubusercontent.com/zhangyangyang0322/nfc-interactive-map/main/server.js
+curl -fsSL -o package.json https://raw.githubusercontent.com/zhangyangyang0322/nfc-interactive-map/main/package.json
 if [ ! -d node_modules ]; then
   npm install --no-audit --no-fund >/dev/null 2>&1 || npm install ws --no-audit --no-fund >/dev/null 2>&1
 fi
